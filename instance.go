@@ -46,7 +46,7 @@ func (i *Instance) IsAuthenticated() bool {
 }
 
 func (i *Instance) GetChatEndpoint() string {
-	host := utils.TrimPrefixes(i.Endpoint, "http://", "https://")
+	host := utils.TrimPrefixes(i.GetEndpoint(), "http://", "https://")
 	return fmt.Sprintf("wss://%s/chat", host)
 }
 
