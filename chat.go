@@ -44,6 +44,10 @@ func (c *Chat) Close() error {
 	return c.Conn.Close()
 }
 
+func (c *Chat) DeferClose() {
+	c.Conn.DeferClose()
+}
+
 func (c *Chat) SendAuthRequest() bool {
 	return c.Send(ChatAuthForm{
 		Id:    c.Id,
@@ -72,7 +76,13 @@ func (c *Chat) AskStream(form *ChatRequestForm, callback func(ChatPartialRespons
 }
 
 func (c *Chat) Ask(form *ChatRequestForm, channel chan ChatPartialResponse) {
-	c.AskStream(form, func(res ChatPartialResponse) {
-		channel <- res
-	})
+	worker := func() {
+		c.AskStream(form, func(res ChatPartialResponse) {
+			channel <- res
+		})
+
+		close(channel)
+	}
+
+	go worker()
 }
