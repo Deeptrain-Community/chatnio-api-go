@@ -41,12 +41,11 @@ chat.AskStream(&chatnio.ChatRequestForm{
 })
 
 // or using channel
-channel := make(chan ChatPartialResponse)
-chat.Ask(&ChatRequestForm{
+channel := make(chan chatnio.ChatPartialResponse)
+chat.Ask(&chatnio.ChatRequestForm{
     Message: "hello",
     Model:   "gpt-3.5-turbo",
 }, channel)
-
 for resp := range channel {
     // do something
 }
