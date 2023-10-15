@@ -79,7 +79,7 @@ if quota, err := instance.GetQuota(); err == nil {
 }
 
 // buy quota
-if quota, err := instance.BuyQuota(100); err == nil {
+if err := instance.BuyQuota(100); err == nil {
     fmt.Println("bought successfully")
 }
 ```
