@@ -16,7 +16,7 @@ The official Go library for the Chat Nio API
 ## Installation
 
 ```shell
-go get -u github.com/deeptrain-community/chatnio-api-go
+go get -u github.com/Deeptrain-Community/chatnio-api-go
 ```
 
 ## Usage
