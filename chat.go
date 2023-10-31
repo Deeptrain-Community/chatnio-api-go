@@ -61,7 +61,13 @@ func (c *Chat) AskStream(form *ChatRequestForm, callback func(ChatPartialRespons
 		c.SendAuthRequest()
 	}
 
-	c.Send(form)
+	c.Send(map[string]interface{}{
+		"type":    "chat",
+		"message": form.Message,
+		"model":   form.Model,
+		"web":     form.Web,
+	})
+
 	for {
 		form := utils.ReadForm[ChatPartialResponse](c.Conn)
 		if form == nil {
