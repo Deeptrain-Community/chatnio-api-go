@@ -92,8 +92,8 @@ if sub, err := instance.GetSubscription(); err == nil {
 }
 
 // buy subscription
-if err := instance.Subscribe(1); err == nil {
-    fmt.Println("bought subscription for 1 month successfully")
+if err := instance.Subscribe(1, 1); err == nil {
+    fmt.Println("bought basic subscription for 1 month successfully")
 }
 
 // get package

@@ -84,8 +84,9 @@ func (i *Instance) GetSubscription() (*Subscription, error) {
 	return data, nil
 }
 
-func (i *Instance) Subscribe(month int) error {
+func (i *Instance) Subscribe(level int, month int) error {
 	data, err := utils.PostForm[Subscribe](i.Mix("/subscribe"), i.GetHeaders(), map[string]interface{}{
+		"level": level,
 		"month": month,
 	})
 

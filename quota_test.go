@@ -70,7 +70,7 @@ func TestInstance_Subscribe(t *testing.T) {
 		return
 	}
 
-	err := instance.Subscribe(1)
+	err := instance.Subscribe(1, 1)
 	if err != nil {
 		t.Error(err)
 	}
