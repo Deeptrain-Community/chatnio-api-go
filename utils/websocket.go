@@ -10,15 +10,17 @@ type WebSocket struct {
 	Cursor int
 }
 
-func NewWebsocket(url string) *WebSocket {
-	if conn, _, err := websocket.DefaultDialer.Dial(url, nil); err != nil {
-		return nil
-	} else {
-		return &WebSocket{
-			Conn:   conn,
-			Cursor: 0,
-		}
+func NewWebsocket(url string) (ws *WebSocket, err error) {
+	conn, _, err := websocket.DefaultDialer.Dial(url, nil)
+	if err != nil {
+		return
 	}
+
+	ws = &WebSocket{
+		Conn:   conn,
+		Cursor: 0,
+	}
+	return
 }
 
 func (w *WebSocket) GetCursor() int {

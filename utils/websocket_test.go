@@ -1,12 +1,13 @@
 package utils
 
 import (
+	"fmt"
 	"testing"
 )
 
 func TestNewWebsocket(t *testing.T) {
-	ws := NewWebsocket("wss://api.chatnio.net/chat")
-	if ws == nil {
-		t.Error("websocket is nil")
+	_, err := NewWebsocket("wss://api.chatnio.net/chat")
+	if err != nil {
+		t.Errorf(fmt.Sprintf("error occurred: %s", err.Error()))
 	}
 }

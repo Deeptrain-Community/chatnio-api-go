@@ -30,7 +30,10 @@ instance := chatnio.NewInstanceFromEnv("CHATNIO_TOKEN")
 
 - Chat
 ```go
-chat := instance.NewChat(-1) // id -1: creating new chat
+chat, err := instance.NewChat(-1) // id -1: creating new chat
+if err != nil {
+    panic(err)
+}
 
 // using hook
 chat.AskStream(&chatnio.ChatRequestForm{

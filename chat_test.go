@@ -11,7 +11,12 @@ func TestChat_AskStream(t *testing.T) {
 		return
 	}
 
-	chat := instance.NewChat(-1)
+	chat, err := instance.NewChat(-1)
+	if err != nil {
+		t.Errorf(fmt.Sprintf("error occurred: %s", err.Error()))
+		return
+	}
+
 	defer chat.DeferClose()
 
 	chat.AskStream(&ChatRequestForm{
@@ -27,8 +32,13 @@ func TestChat_Ask(t *testing.T) {
 		return
 	}
 
-	chat := instance.NewChat(-1)
+	chat, err := instance.NewChat(-1)
 	defer chat.DeferClose()
+
+	if err != nil {
+		t.Errorf(fmt.Sprintf("error occurred: %s", err.Error()))
+		return
+	}
 
 	channel := make(chan ChatPartialResponse)
 	chat.Ask(&ChatRequestForm{

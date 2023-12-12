@@ -27,13 +27,18 @@ type ChatPartialResponse struct {
 	End     bool    `json:"end"`
 }
 
-func (i *Instance) NewChat(id int) *Chat {
+func (i *Instance) NewChat(id int) (*Chat, error) {
+	conn, err := utils.NewWebsocket(i.GetChatEndpoint())
+	if err != nil {
+		return nil, err
+	}
+
 	return &Chat{
 		Id:    id,
 		Uri:   i.GetChatEndpoint(),
 		Token: i.GetApiKey(),
-		Conn:  utils.NewWebsocket(i.GetChatEndpoint()),
-	}
+		Conn:  conn,
+	}, nil
 }
 
 func (c *Chat) Send(v interface{}) bool {
