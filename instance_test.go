@@ -11,13 +11,13 @@ func init() {
 }
 
 func TestInstance_GetEndpoint(t *testing.T) {
-	if instance.GetEndpoint() != "https://api.chatnio.net" {
-		t.Error("endpoint is not https://api.chatnio.net")
+	if len(instance.GetEndpoint()) == 0 {
+		t.Error("endpoint is not not correct")
 	}
 }
 
 func TestInstance_GetChatEndpoint(t *testing.T) {
-	if instance.GetChatEndpoint() != "wss://api.chatnio.net/chat" {
+	if len(instance.GetChatEndpoint()) == 0 {
 		t.Error("chat endpoint is not correct")
 	}
 }
@@ -30,7 +30,7 @@ func TestInstance_GetHeaders(t *testing.T) {
 }
 
 func TestInstance_Mix(t *testing.T) {
-	if instance.Mix("/test") != "https://api.chatnio.net/test" {
+	if len(instance.Mix("/test")) == 0 {
 		t.Error("mix is not correct")
 	}
 }

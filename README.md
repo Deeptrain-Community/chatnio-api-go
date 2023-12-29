@@ -26,6 +26,9 @@ go get -u github.com/Deeptrain-Community/chatnio-api-go
 instance := chatnio.NewInstance("sk-...")
 // or load from env
 instance := chatnio.NewInstanceFromEnv("CHATNIO_TOKEN")
+
+// set custom api endpoint (default: https://api.chatnio.net)
+// instance.SetEndpoint("https://example.com/api")
 ```
 
 - Chat

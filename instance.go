@@ -45,9 +45,17 @@ func (i *Instance) IsAuthenticated() bool {
 	return strings.TrimSpace(i.ApiKey) != ""
 }
 
-func (i *Instance) GetChatEndpoint() string {
-	host := utils.TrimPrefixes(i.GetEndpoint(), "http://", "https://")
-	return fmt.Sprintf("wss://%s/chat", host)
+func (i *Instance) GetChatEndpoint() (host string) {
+	host = i.GetEndpoint()
+	if strings.HasPrefix(host, "http://") {
+		host = fmt.Sprintf("ws://%s/chat", strings.TrimPrefix(host, "http://"))
+	} else if strings.HasPrefix(host, "https://") {
+		host = fmt.Sprintf("wss://%s/chat", strings.TrimPrefix(host, "https://"))
+	} else {
+		host = fmt.Sprintf("wss://%s/chat", host)
+	}
+
+	return
 }
 
 func (i *Instance) GetHeaders() utils.Headers {

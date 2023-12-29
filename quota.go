@@ -40,7 +40,7 @@ func (i *Instance) GetQuota() (float32, error) {
 	if err != nil {
 		return 0., err
 	} else if !quota.Status {
-		return 0., fmt.Errorf("quota status is false")
+		return 0., fmt.Errorf("quota query status is false")
 	}
 
 	return quota.Quota, nil
